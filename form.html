@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+</head>
+<body>
+    <h1>Income Tax Form 16</h1>
+    <div class="container">
+        <form>
+            <div>
+                <label for="name">NAME:</label><br>
+                <input type="text"  name="name" required>
+            </div>
+            <div>
+                <span>GENDER:</span><br>
+                <label><input type="radio" name="gender" value="male" required> Male</label><br>
+                <label><input type="radio" name="gender" value="female"> Female</label><br>
+            </div>
+            <div>
+                <label for="pan no">PAN NO</label><br>
+                <input type="text" id="pan no" name="pan no" required>
+            </div>
+            <div>
+                <label for="email">EMAIL</label><br>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="mobile">MOBILE</label><br>
+                <input type="text" id="mobile" name="mobile" required>
+            </div>
+             <div>
+                <span>INCOME</span><br>
+                <label><input type="radio" name="income" value="salary" required> SALARY</label><br>
+                <label><input type="radio" name="income" value="rent"> RENT</label><br>
+                <label><input type="radio" name="income" value="business"> BUSINESS</label><br>
+            </div>
+            <div>
+                <label for="state">STATE</label><br>
+    <select id="state" name="state">
+        <option value="">--Select State--</option>
+        <option value="TN">Tamil Nadu</option>
+        <option value="KL">Kerala</option>
+        <option value="KA">Karnataka</option>
+        <option value="AP">Andhra Pradesh</option>
+        <option value="TS">Telangana</option>
+        <option value="MH">Maharashtra</option>
+        <option value="DL">Delhi</option>
+        <option value="GJ">Gujarat</option>
+        <option value="RJ">Rajasthan</option>
+        <option value="UP">Uttar Pradesh</option>
+    </select>
+            </div>
+            <div style="margin-top:20px;">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
