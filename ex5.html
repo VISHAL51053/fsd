@@ -1,10 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Management System</title>
 </head>
+
 <body>
 
     <h2>Product Management System</h2>
@@ -67,10 +69,10 @@
                     "<td>" + p.name + "</td>" +
                     "<td>$" + p.price + "</td>" +
                     "<td>" +
-                        "<button onclick=\"editPrice('" + p.id + "')\">Edit Price</button> " +
-                        "<button onclick=\"deleteProduct('" + p.id + "')\">Delete</button>" +
+                    "<button onclick=\"editPrice('" + p.id + "')\">Edit Price</button> " +
+                    "<button onclick=\"deleteProduct('" + p.id + "')\">Delete</button>" +
                     "</td>" +
-                "</tr>";
+                    "</tr>";
                 tbody.innerHTML += row;
             }
         }
@@ -113,7 +115,7 @@
 
         // Delete product
         function deleteProduct(id) {
-            var products = getProducts().filter(function(p) { return p.id !== id; });
+            var products = getProducts().filter(function (p) { return p.id !== id; });
             saveProducts(products);
             loadProducts();
         }
@@ -123,4 +125,5 @@
     </script>
 
 </body>
+
 </html>

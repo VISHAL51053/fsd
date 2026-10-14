@@ -1,4 +1,4 @@
-﻿const http = require("http");
+const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
@@ -7,13 +7,13 @@ const ROOT = __dirname;
 
 const mimeTypes = {
   ".html": "text/html",
-  ".css":  "text/css",
-  ".js":   "text/javascript",
+  ".css": "text/css",
+  ".js": "text/javascript",
   ".json": "application/json",
-  ".png":  "image/png",
-  ".jpg":  "image/jpeg",
-  ".svg":  "image/svg+xml",
-  ".ico":  "image/x-icon"
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".svg": "image/svg+xml",
+  ".ico": "image/x-icon"
 };
 
 const server = http.createServer((req, res) => {

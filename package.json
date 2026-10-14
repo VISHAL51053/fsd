@@ -1,0 +1,14 @@
+{
+  "name": "html.ex",
+  "version": "1.0.0",
+  "description": "Full Stack Development Exercises",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "ex5": "node ex5.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongodb": "^6.5.0"
+  }
+}
