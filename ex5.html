@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management System</title>
+</head>
+<body>
+
+    <h2>Product Management System</h2>
+
+    <h4>Add New Product</h4>
+    <input type="text" id="productName" placeholder="Product Name">
+    <input type="number" id="productPrice" placeholder="Price">
+    <button onclick="addProduct()">Add Product</button>
+
+    <h4>Product List</h4>
+    <button onclick="loadProducts()">Load / Refresh Products</button>
+
+    <br><br>
+
+    <table border="1" cellpadding="6" cellspacing="0" id="productTable">
+        <thead>
+            <tr>
+                <th style="width:280px">ID</th>
+                <th style="width:200px">Name</th>
+                <th style="width:80px">Price</th>
+                <th style="width:120px">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="productBody">
+        </tbody>
+    </table>
+
+    <script>
+        // Generate a MongoDB-style ObjectId
+        function generateId() {
+            var timestamp = Math.floor(Date.now() / 1000).toString(16).padStart(8, "0");
+            var random = "";
+            for (var i = 0; i < 16; i++) {
+                random += Math.floor(Math.random() * 16).toString(16);
+            }
+            return timestamp + random;
+        }
+
+        // Load products from localStorage
+        function getProducts() {
+            var data = localStorage.getItem("products");
+            return data ? JSON.parse(data) : [];
+        }
+
+        // Save products to localStorage
+        function saveProducts(products) {
+            localStorage.setItem("products", JSON.stringify(products));
+        }
+
+        // Render table
+        function loadProducts() {
+            var products = getProducts();
+            var tbody = document.getElementById("productBody");
+            tbody.innerHTML = "";
+
+            for (var i = 0; i < products.length; i++) {
+                var p = products[i];
+                var row = "<tr>" +
+                    "<td>" + p.id + "</td>" +
+                    "<td>" + p.name + "</td>" +
+                    "<td>$" + p.price + "</td>" +
+                    "<td>" +
+                        "<button onclick=\"editPrice('" + p.id + "')\">Edit Price</button> " +
+                        "<button onclick=\"deleteProduct('" + p.id + "')\">Delete</button>" +
+                    "</td>" +
+                "</tr>";
+                tbody.innerHTML += row;
+            }
+        }
+
+        // Add product
+        function addProduct() {
+            var name = document.getElementById("productName").value.trim();
+            var price = document.getElementById("productPrice").value.trim();
+
+            if (!name || !price) {
+                alert("Please enter both Product Name and Price.");
+                return;
+            }
+
+            var products = getProducts();
+            products.push({ id: generateId(), name: name, price: price });
+            saveProducts(products);
+
+            document.getElementById("productName").value = "";
+            document.getElementById("productPrice").value = "";
+
+            loadProducts();
+        }
+
+        // Edit price
+        function editPrice(id) {
+            var newPrice = prompt("Enter new price:");
+            if (newPrice === null || newPrice.trim() === "") return;
+
+            var products = getProducts();
+            for (var i = 0; i < products.length; i++) {
+                if (products[i].id === id) {
+                    products[i].price = newPrice.trim();
+                    break;
+                }
+            }
+            saveProducts(products);
+            loadProducts();
+        }
+
+        // Delete product
+        function deleteProduct(id) {
+            var products = getProducts().filter(function(p) { return p.id !== id; });
+            saveProducts(products);
+            loadProducts();
+        }
+
+        // Auto-load on page open
+        loadProducts();
+    </script>
+
+</body>
+</html>
